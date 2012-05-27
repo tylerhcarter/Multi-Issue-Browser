@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/github-api3-php/lib/vendor/Symfony/Component/ClassLoader/UniversalClassLoader.php';
+require_once dirname(__FILE__) . '/api/lib/vendor/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 /**
  * Configure the autoloader
@@ -14,7 +14,7 @@ require_once dirname(__FILE__) . '/github-api3-php/lib/vendor/Symfony/Component/
 $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
 // Register the location of the GitHub namespace
 $loader->registerNamespaces(array(
-    'Buzz'              => __DIR__.'/github-api3-php/lib/vendor/Buzz/lib',
-    'GitHub'            => __DIR__.'/github-api3-php/lib'
+    'Buzz'              => __DIR__.'/api/lib/vendor/Buzz/lib',
+    'GitHub'            => __DIR__.'/api/lib'
 ));
 $loader->register();
