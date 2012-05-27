@@ -1,0 +1,89 @@
+.container{
+	font-family: helvetica;
+	margin-left: auto;
+	margin-right: auto;
+	width: 63em;
+}
+
+.clr{
+	clear: both;
+	height: 0;
+	width: 100%;
+}
+
+.repository-list{
+}
+
+.repository{
+	height: 100px;
+	position: relative;
+}
+
+.repository h2{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	color: white;
+	font-size: 52px;
+	margin: 0;
+	margin-left: 10px;
+	line-height: 100px;
+	font-family: helvetica;
+}
+
+.progress-bar{
+	float: left;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.milestone{
+	background-color: #EEEEEF;
+}
+
+.milestone-header{
+	padding: 10px;
+	font-size: 32px;
+}
+
+.column{
+	float: left;
+	width: 21em;
+}
+
+.column-header{
+	padding: 5px;
+}
+
+.issue{
+	background-color: white;
+	font-size: 12px;
+	padding-left: 3%;
+	padding-right: 3%;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.issue:nth-child(odd){
+	background-color: rgba(153, 204,15, .05);
+}
+
+.issue .number{
+	float: right;
+	background-color: #999999;
+	color: white;
+	font-size: 12px;
+	padding-top: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	border-radius: 5px;
+}
+
+.issue .number .pound{
+	font-size: 9px;
+}
+
+.issue .title{
+	margin-left: 5px;
+}
