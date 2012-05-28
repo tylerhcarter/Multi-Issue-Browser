@@ -1,5 +1,7 @@
-.container{
+body{
 	font-family: helvetica;
+}
+.container{
 	margin-left: auto;
 	margin-right: auto;
 	width: 63em;
@@ -86,4 +88,19 @@
 
 .issue .title{
 	margin-left: 5px;
+}
+
+.info-bar{
+	background-color: white;
+	position:fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;	
+}
+
+.info-bar .content{
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 63em;
 }
