@@ -7,6 +7,11 @@ body{
 	width: 63em;
 }
 
+a{
+	color: inherit;
+	text-decoration: none;
+}
+
 .clr{
 	clear: both;
 	height: 0;
@@ -66,23 +71,23 @@ body{
 	height: 25px;
 }
 
-.user.column .name{
+.column .name{
+	position: relative;
+	top: 3px;
+	left: 3px;
+}
+
+.column img + .name{
 	margin-left: 5px;
 	position: relative;
 	top: -2px;
 }
 
-.user.column img{
+.column img{
 	height: 20px;
 	width: 20px;
 	position: relative;
 	top: 2px;
-}
-
-.label.column .name{
-	position: relative;
-	top: 3px;
-	left: 3px;
 }
 
 .issue{

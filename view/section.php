@@ -9,6 +9,11 @@ class Section{
 	protected $header_class = 'section-header';
 	protected $list_class = 'list';
 
+	public function __construct( $title = '', array $columns = array() ){
+		$this->title = $title;
+		$this->columns = $columns;
+	}
+
 	public function add_column( Column $column ){
 
 		$this->columns[] = $column;
