@@ -5,10 +5,10 @@ body{
 	overflow-y: scroll;
 }
 .container{
-	padding-top: 40px;
+	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
-	width: 63em;
+	position: relative;
 }
 
 a{
@@ -50,11 +50,13 @@ a{
 }
 
 .milestone{
+	margin-bottom: 10px;
 }
 
 .milestone-header{
 	padding: 10px;
 	font-size: 32px;
+	clear: both;
 }
 
 .column{
@@ -129,32 +131,33 @@ a{
 }
 
 .info-bar{
-	position:fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
+	position: absolute;
+	top: 56px;
+	right: -200px;
+	width: 180px;
 }
 
 .info-bar .content{
 	background-color: #EEEEEF;
-	border-bottom-left-radius: 5px;	
-	border-bottom-right-radius: 5px;	
-	padding: 3px;
+	border-radius: 5px;	
+	padding: 10px;
 	padding-top: 12px;
 	padding-left: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 27px;
-	width: 63em;
+	height: 100%;
+}
+
+.info-bar .widget{
+	padding-bottom: 10px;
 }
 
 .info-bar a{
 	background-color: #CCC;
 	border-radius: 5px;
 	cursor: pointer;
-	padding: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
+	font-size: 12px;
+	padding: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
 	margin-right: 5px;
 }
 
@@ -162,9 +165,9 @@ a{
 	border: none;
 	border-radius: 5px;
 	padding: 5px;
-	float: right;
-	position: relative;
-	top: -5px;
-	left: -5px;
-	width: 20em;
+	width: 100%;
+}
+
+#repository, #user{
+	width: 100%;
 }

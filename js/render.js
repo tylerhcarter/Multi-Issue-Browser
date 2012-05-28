@@ -5,11 +5,6 @@
 
 	var renderData = function( data ){
 
-		console.log( data );
-
-		var container = $("<div>", {
-			"class" : "container"
-		});
 		var milestones = [];
 
 		var len = data.length;
@@ -17,10 +12,8 @@
 			milestones.push( renderMilestone( data[i].title, data[i].columns ) );
 		}
 
-		publishArray( container, milestones );
-
-		$(".container").remove();
-		$("body").append(container);
+		$(".milestone").remove();
+		publishArray( ".container", milestones );
 
 	}
 	$p.registerDataHandler( renderData );
@@ -46,9 +39,6 @@
 				}));
 			}
 		}
-		columns.push( $("<div>", {
-					"class" : "clr"
-				}));
 
 		publishArray( milestone, columns );
 		return milestone;
@@ -56,7 +46,6 @@
 	}
 
 	var renderColumn = function( data ){
-		console.log( "Column");
 		var issues = data.issues;
 		var column = $("<div>", {
 			"class" : "column"

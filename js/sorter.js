@@ -4,49 +4,95 @@
 	$ = window.jQuery;
 
 	$p.Sorter = {};
-	$p.sortType = "user";
+	$p.Sorter.sortMethod;
 
 	$p.Sorter.sort = function( data ){
 
-		var sort_type = "label";
+		var milestones = $p.Sorter.sorts.by_milestone( data );
+		console.log(milestones);
 
-		var columns;
-		if( $p.sortType == "label"){
-			columns = sort_by_label(data);
-		}else{
-			columns = sort_by_user(data);
+		var len = milestones.length;
+		for( var i = 0; i < len; i++){
+
+			var milestone = milestones[i];
+			milestone.columns = $p.Sorter.sortMethod( milestone.issues );
+
 		}
-		
 
-		return[{
-			"title" : "Milestone",
-			"columns" : columns
-		}];
+		return milestones;
 
 	}
 
-	function sort_by_user( data ){
+})(window);
 
-		var new_user = function( title, avatar, users ){
-			obj = $p.createColumn( title, intToARGB(hashCode(title)).substring(0, 6), avatar );
-			users.push(obj);
+(function( window ){
+
+	$p.Sorter.sorts = {};
+
+	$p.Sorter.sorts.by_milestone = function( data ){
+
+		var milestones = [];
+
+		var new_milestone = function( milestone, milestones ){
+			obj = {
+				"title" : milestone.title,
+				"issues" : [],
+				"columns" : []
+			};
+			milestones.push(obj);
 			return obj;
 		};
 
-		function hashCode(str) {
-		    var hash = 0;
-		    for (var i = 0; i < str.length; i++) {
-		       hash = str.charCodeAt(i) + ((hash << 5) - hash);
-		    }
-		    return hash;
-		} 
-
-		function intToARGB(i){
-		    return ((i>>24)&0xFF).toString(16) + 
-		           ((i>>16)&0xFF).toString(16) + 
-		           ((i>>8)&0xFF).toString(16) + 
-		           (i&0xFF).toString(16);
+		var find_milestone = function ( title, milestones ){
+			var len = milestones.length;
+			for( var i = 0; i < len; i++ ){
+				if( milestones[i].title == title )
+					return milestones[i];
+			}
+			return false;
 		}
+
+		var unassigned = {
+			"title" : "Unassigned",
+			"issues" : [],
+			"columns" : []
+		};
+
+		var len = data.length;
+		for( var i = 0; i < len; i++ ){
+
+			var issue = data[i];
+
+			var search = issue.milestone;
+			if( search === null ){
+				unassigned.issues.push(issue);
+				continue;
+			}
+
+			var milestone = find_milestone( search.title, milestones );
+			if( milestone === false ){
+				milestone = new_milestone( search, milestones );
+			}
+
+			milestone.issues.push(issue);
+
+		}
+
+		if(unassigned.issues.length !== 0){
+			milestones.push(unassigned);
+		}
+
+		return milestones;
+
+	}
+
+	$p.Sorter.sorts.by_user = function ( data ){
+
+		var new_user = function( title, avatar, users ){
+			obj = $p.createColumn( title, '', avatar );
+			users.push(obj);
+			return obj;
+		};
 
 		var find_user = function ( title, users ){
 			var len = users.length;
@@ -84,13 +130,11 @@
 			users.push(unassigned);
 		}
 
-		console.log(users);
-
 		return users;
 
 	}
 
-	function sort_by_label( data ){
+	$p.Sorter.sorts.by_label = function( data ){
 
 		var new_label = function( title, color, labels ){
 			obj = $p.createColumn( title, color );
@@ -134,13 +178,13 @@
 			}
 
 		}
-
 		if(unlabeled.issues.length !== 0){
 			labels.push(unlabeled);
 		}
-
 		return labels;
 
 	}
+
+	$p.Sorter.sortMethod = $p.Sorter.sorts.by_user;
 
 })(window);
