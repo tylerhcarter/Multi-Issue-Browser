@@ -38,6 +38,9 @@
 		};
 
 	}
+	$p.redraw = function(){
+		$p.drawData($p.data.raw);
+	}
 
 	var searchTerm = '';
 	function filterByText( text ){
@@ -90,6 +93,22 @@
 		var bar = $("<div>", {
 			"class" : "content"
 		});
+
+		$("<a>", {
+			"text" : "User",
+			"click" : function(){
+				$p.sortType = "user",
+				$p.redraw();
+			}
+		}).appendTo(bar);
+
+		$("<a>", {
+			"text" : "Label",
+			"click" : function(){
+				$p.sortType = "label",
+				$p.redraw();
+			}
+		}).appendTo(bar);
 
 		$("<input>", {
 			"type" : "text",

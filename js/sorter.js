@@ -4,13 +4,19 @@
 	$ = window.jQuery;
 
 	$p.Sorter = {};
+	$p.sortType = "user";
 
 	$p.Sorter.sort = function( data ){
 
 		var sort_type = "label";
 
-		var columns = sort_by_user(data);
-		//var columns = sort_by_label(data);
+		var columns;
+		if( $p.sortType == "label"){
+			columns = sort_by_label(data);
+		}else{
+			columns = sort_by_user(data);
+		}
+		
 
 		return[{
 			"title" : "Milestone",
@@ -21,11 +27,26 @@
 
 	function sort_by_user( data ){
 
-		var new_user = function( title, users ){
-			obj = $p.createColumn( title );
+		var new_user = function( title, avatar, users ){
+			obj = $p.createColumn( title, intToARGB(hashCode(title)).substring(0, 6), avatar );
 			users.push(obj);
 			return obj;
 		};
+
+		function hashCode(str) {
+		    var hash = 0;
+		    for (var i = 0; i < str.length; i++) {
+		       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+		    }
+		    return hash;
+		} 
+
+		function intToARGB(i){
+		    return ((i>>24)&0xFF).toString(16) + 
+		           ((i>>16)&0xFF).toString(16) + 
+		           ((i>>8)&0xFF).toString(16) + 
+		           (i&0xFF).toString(16);
+		}
 
 		var find_user = function ( title, users ){
 			var len = users.length;
@@ -52,7 +73,7 @@
 
 			var user = find_user( assignee.login, users );
 			if( user === false ){
-				user = new_user( assignee.login, users );
+				user = new_user( assignee.login, assignee.avatar_url, users );
 			}
 
 			user.issues.push(issue);

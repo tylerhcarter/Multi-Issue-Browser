@@ -1,7 +1,11 @@
 body{
 	font-family: helvetica;
+	margin: 0;
+	padding: 0;
+	overflow-y: scroll;
 }
 .container{
+	padding-top: 40px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 63em;
@@ -46,7 +50,6 @@ a{
 }
 
 .milestone{
-	background-color: #EEEEEF;
 }
 
 .milestone-header{
@@ -56,11 +59,14 @@ a{
 
 .column{
 	float: left;
-	width: 21em;
+	width: 20.5em;
+	margin-right: 5px;
+	margin-bottom: 5px;
 }
 
 .column-header{
 	padding: 5px;
+	border-radius: 10px;
 }
 
 .column-header .title{
@@ -123,16 +129,42 @@ a{
 }
 
 .info-bar{
-	background-color: white;
 	position:fixed;
-	bottom: 0;
+	top: 0;
 	left: 0;
-	width: 100%;	
+	width: 100%;
 }
 
 .info-bar .content{
-	padding: 5px;
+	background-color: #EEEEEF;
+	border-bottom-left-radius: 5px;	
+	border-bottom-right-radius: 5px;	
+	padding: 3px;
+	padding-top: 12px;
+	padding-left: 10px;
 	margin-left: auto;
 	margin-right: auto;
+	height: 27px;
 	width: 63em;
+}
+
+.info-bar a{
+	background-color: #CCC;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 5px;
+}
+
+#search{
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+	float: right;
+	position: relative;
+	top: -5px;
+	left: -5px;
+	width: 20em;
 }
