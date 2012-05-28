@@ -5,7 +5,7 @@ body{
 	overflow-y: scroll;
 }
 .container{
-	width: 70%;
+	width: 50em;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -98,36 +98,9 @@ a{
 	top: 2px;
 }
 
-.issue{
-	background-color: white;
-	font-size: 12px;
-	padding-left: 3%;
-	padding-right: 3%;
-	padding-bottom: 5px;
-	padding-top: 5px;
-}
-
-.issue:nth-child(odd){
-	background-color: rgba(153, 204,15, .05);
-}
-
-.issue .number{
-	float: right;
-	background-color: #999999;
-	color: white;
-	font-size: 12px;
-	padding-top: 1px;
-	padding-left: 7px;
-	padding-right: 7px;
-	border-radius: 5px;
-}
-
-.issue .number .pound{
-	font-size: 9px;
-}
-
-.issue .title{
-	margin-left: 5px;
+.issue-data{
+	border-left: 1px solid #EEEEEF;
+	border-right: 1px solid #EEEEEF;
 }
 
 .info-bar{

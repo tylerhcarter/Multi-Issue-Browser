@@ -5,73 +5,19 @@
 
 	var renderData = function( data ){
 
-		var milestones = [];
+		var issues = [];
 
 		var len = data.length;
-		for( var i = 0; i < len; i++){
-			milestones.push( renderMilestone( data[i].title, data[i].columns ) );
+		for( var i = 0; i < len; i++ ){
+			issues.push( renderIssue(data[i]) );
+			issues.push( renderIssueData( data[i]) );
 		}
 
-		$(".milestone").remove();
-		publishArray( ".container", milestones );
+		$(".issue-data").html("");
+		publishArray( ".issue-data", issues );
 
 	}
 	$p.registerDataHandler( renderData );
-
-	var renderMilestone = function( name, data ){
-
-		var milestone = $("<div>", {
-			"class" : "milestone"
-		});
-
-		$("<div>", {
-			"class" : "milestone-header",
-			"text" : name
-		}).appendTo(milestone);
-
-		var columns = [];
-		var len = data.length;
-		for( var i = 0; i < len; i++ ){
-			columns.push( renderColumn( data[i] ) );
-			if( (i + 1) % 3 == 0 ){
-				columns.push( $("<div>", {
-					"class" : "clr"
-				}));
-			}
-		}
-
-		publishArray( milestone, columns );
-		return milestone;
-
-	}
-
-	var renderColumn = function( data ){
-		var issues = data.issues;
-		var column = $("<div>", {
-			"class" : "column"
-		});
-
-		$("<div>", {
-			"class" : "column-header",
-			"style" : "background-color: #" + data.color,
-			"html" : $("<div>", {
-				"class" : "title",
-				"html" : "<div class=\"name\">" + data.title + "</div>"
-			})
-		}).appendTo(column);
-
-		var html = [];
-
-		var len = issues.length;
-		for( var i = 0; i < len; i++ ){
-			var issue = renderIssue( issues[i] );
-			html.push( issue );
-		}
-
-		publishArray( column, html );
-		return column;
-
-	}
 
 	var publishArray = function ( parent, elements ){
 		var len = elements.length;
@@ -83,10 +29,39 @@
 	var renderIssue = function( issue ){
 
 		var html = "<div class=\"number\"><span class=\"pound\">#</span>" + issue.number + "</div>";
-		html += "<div class=\"title\"><a href=\"" + issue.html_url + "\">" + issue.title + "</a></div>";
+		html += "<div class=\"title\">" + issue.title + "</div>";
+		html += "<div class=\"author\">Created By " + issue.user.login + ".</div>";
 
 		return $("<div>", {
 			"class" : "issue",
+			"html" : html,
+			"click" : function(){
+				$(this).next().toggle();
+			}
+		});
+
+	};
+
+	var renderIssueData = function( issue ){
+
+		var html = ""
+
+		var assignee = "";
+		if( issue.assignee !== null ){
+			assignee = "Assigned to <span class=\"user\">" + issue.assignee.login + "</span>";
+		}
+
+		html += "<div class=\"issue-header\">";
+			html += "<div class=\"author\">Created By  <span class=\"user\">" + issue.user.login + "</span>. " + assignee + "</div>";
+			html += "<div class=\"title\"><h3>" + issue.title + "</h3></div>";
+		html += "</div>";
+
+		html += "<div class=\"issue-content\">";
+			html += "<div class=\"description\">" + issue.body_html + "</div>";
+		html += "</div>";
+
+		return $("<div>", {
+			"class" : "issue-meta",
 			"html" : html
 		});
 

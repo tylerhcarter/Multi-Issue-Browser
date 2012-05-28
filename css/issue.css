@@ -1,0 +1,80 @@
+.issue{
+	background-color: white;
+	border-bottom: 1px solid #EEEEEF;
+	cursor: pointer;
+	font-size: 13px;
+
+	padding: 8px;
+	padding-left: 5px;
+}
+
+.issue .number{
+	color: #999;
+	float: left;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-left: 4px;
+	width: 40px;
+}
+
+.issue .title{
+	font-size: 13px;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-bottom: 2px;
+}
+
+.issue .author{
+	color: #666;
+	font-size: 11px;
+	margin-left: 5px;
+}
+
+.issue-meta{
+	display: none;
+}
+
+.issue-content {
+	background-color: white;
+	padding: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #EEEEEF;
+}
+
+.issue-meta .issue-header{
+	background-color: #EEEEEF;
+	border-bottom: 1px solid #CCC;
+	padding: 5px;
+	padding-left: 10px;
+	padding-bottom: 8px;
+}
+
+.issue-meta h3{
+	margin: 0;
+	padding-top: 6px;
+}
+
+.issue-meta .author{
+	color: #666;
+	font-size: 11px;
+	padding-top: 3px;
+}
+.issue-meta .author .user{
+	font-weight: bold;
+}
+
+.issue-meta .description{
+	color: #333;
+	font-size: 13px;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	width: 40em;
+}
+
+.description blockquote{
+	background-color: rgba(0,0,0, .02 );
+	margin: 0;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

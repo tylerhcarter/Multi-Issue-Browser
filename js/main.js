@@ -19,7 +19,10 @@
 	$p.start = function(){
 
 		$("<div>", {
-			"class" : "container"
+			"class" : "container",
+			"html" : $("<div>", {
+				"class" : "issue-data"
+			})
 		}).appendTo($("body"));
 		$p.Sidebar.start();
 		$p.load();
@@ -36,11 +39,12 @@
 	$p.drawData = function( rawData ){
 
 		filteredData = $p.filters.filter(rawData);
-		sortedData = $p.Sorter.sort( filteredData );
-		notify(sortedData);
+		//sortedData = $p.Sorter.sort( filteredData );
+		notify(filteredData);
 		$p.data = {
 			"raw" : rawData,
-			"sorted" : sortedData
+			"filtered" : filteredData,
+			//"sorted" : sortedData,
 		};
 
 	}
