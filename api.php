@@ -15,4 +15,20 @@ $issues = new Issue();
 $issues->setCredentials( new Authentication\Basic( GITHUB_USER_NAME, GITHUB_USER_PASS));
 $issues->login();
 
-echo $issues->all("AppThemes", "Vantage", array(), array( 'sort' => 'updated' ), 1, 100 );
+if( empty($_GET['page']) ){
+	$page = 1;
+}else{
+	$page = intval($_GET['page']);
+}
+
+$per_page = 100;
+
+$issues = json_decode($issues->all("AppThemes", "Vantage", array(), array( 'sort' => 'updated' ), $page, $per_page ));
+
+$output = array(
+	"page" => $page,
+	"per_page" => $per_page,
+	"issues" => $issues
+);
+
+echo json_encode($output);

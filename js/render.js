@@ -5,6 +5,30 @@
 
 	var renderData = function( data ){
 
+		var milestones = [];
+
+		var len = data.length;
+		for( var i = 0; i < len; i++ ){
+			milestones.push( renderMilestone( data[i].title, data[i].issues ) );
+		}
+
+		$(".issue-data").html("");
+		publishArray( ".issue-data", milestones );
+
+	}
+	$p.registerDataHandler( renderData );
+
+	var renderMilestone = function( name, data ){
+
+		var milestone = $("<div>", {
+			"class" : "milestone"
+		});
+
+		$("<div>", {
+			"class" : "milestone-header",
+			"text" : name
+		}).appendTo(milestone);
+
 		var issues = [];
 
 		var len = data.length;
@@ -13,11 +37,10 @@
 			issues.push( renderIssueData( data[i]) );
 		}
 
-		$(".issue-data").html("");
-		publishArray( ".issue-data", issues );
+		publishArray( milestone, issues );
+		return milestone;
 
 	}
-	$p.registerDataHandler( renderData );
 
 	var publishArray = function ( parent, elements ){
 		var len = elements.length;
@@ -37,6 +60,7 @@
 			"html" : html,
 			"click" : function(){
 				$(this).next().toggle();
+				$(this).toggleClass("expanded");
 			}
 		});
 
@@ -46,14 +70,13 @@
 
 		var html = ""
 
-		var assignee = "";
+		var assignee = "Not currently assigned.";
 		if( issue.assignee !== null ){
-			assignee = "Assigned to <span class=\"user\">" + issue.assignee.login + "</span>";
+			assignee = "Assigned to <span class=\"user\">" + issue.assignee.login + ".</span>";
 		}
 
 		html += "<div class=\"issue-header\">";
-			html += "<div class=\"author\">Created By  <span class=\"user\">" + issue.user.login + "</span>. " + assignee + "</div>";
-			html += "<div class=\"title\"><h3>" + issue.title + "</h3></div>";
+			html += "<div class=\"author\">" + assignee + "</div>";
 		html += "</div>";
 
 		html += "<div class=\"issue-content\">";

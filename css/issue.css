@@ -8,6 +8,14 @@
 	padding-left: 5px;
 }
 
+.issue.expanded{
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.issue:hover{
+	background-color: rgba(153,204,255, .3);
+}
+
 .issue .number{
 	color: #999;
 	float: left;
@@ -37,6 +45,8 @@
 .issue-content {
 	background-color: white;
 	padding: 10px;
+	padding-top: 0px;
+	padding-left: 45px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #EEEEEF;
 }
@@ -45,7 +55,7 @@
 	background-color: #EEEEEF;
 	border-bottom: 1px solid #CCC;
 	padding: 5px;
-	padding-left: 10px;
+	padding-left: 45px;
 	padding-bottom: 8px;
 }
 
@@ -66,7 +76,6 @@
 .issue-meta .description{
 	color: #333;
 	font-size: 13px;
-	padding-top: 5px;
 	padding-bottom: 20px;
 	width: 40em;
 }

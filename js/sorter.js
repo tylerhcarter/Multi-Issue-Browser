@@ -9,7 +9,7 @@
 	$p.Sorter.sort = function( data ){
 
 		var milestones = $p.Sorter.sorts.by_milestone( data );
-		console.log(milestones);
+		return milestones;
 
 		var len = milestones.length;
 		for( var i = 0; i < len; i++){

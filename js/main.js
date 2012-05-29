@@ -29,22 +29,31 @@
 
 	};
 
+	$p.lastLoad = [];
 	$p.load = function(){
-		$.getJSON("api.php", function(data){
-			$p.lastLoad = data;
-			$p.drawData(data);
-		});
+		$.getJSON("api.php", $p.loadHandler);
+	}
+	$p.loadHandler = function(data){
+		var issues = data.issues;
+		var page = parseInt( data.page, 10 );
+		var per_page = parseInt( data.per_page, 10 );
+
+		$p.lastLoad = $p.lastLoad.concat(issues);
+		$p.drawData($p.lastLoad);
+		if( issues.length == per_page ){
+			$.getJSON("api.php?page="+ ( page + 1 ), $p.loadHandler);
+		}
 	}
 
 	$p.drawData = function( rawData ){
 
 		filteredData = $p.filters.filter(rawData);
-		//sortedData = $p.Sorter.sort( filteredData );
-		notify(filteredData);
+		sortedData = $p.Sorter.sort( filteredData );
+		notify(sortedData);
 		$p.data = {
 			"raw" : rawData,
 			"filtered" : filteredData,
-			//"sorted" : sortedData,
+			"sorted" : sortedData,
 		};
 
 	}

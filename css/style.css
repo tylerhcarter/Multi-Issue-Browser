@@ -50,13 +50,13 @@ a{
 }
 
 .milestone{
-	margin-bottom: 10px;
 }
 
 .milestone-header{
 	padding: 10px;
-	font-size: 32px;
+	font-size: 18px;
 	clear: both;
+	border-bottom: 1px solid #EEEEEF;
 }
 
 .column{
